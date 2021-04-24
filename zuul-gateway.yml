@@ -1,0 +1,43 @@
+# Application config
+
+spring:
+  application:
+    name: zull-gateway
+
+# Eureka client config
+
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    
+# Server config
+
+server:
+  port: 6565
+  
+# Configuraciones de zuul
+
+zuul:
+  routes:
+    producto: 
+      sensitive-headers:
+      path: /catalogo/**
+      serviceId: producto.service
+    compra:
+      sensitive-headers:
+      path: /compra/**
+      service-id: carrito.service
+    uua:
+      sensitive-headers:
+      path: /uaa/**
+      service-id: micro.uaa
+      
+      
+      
+#Security Config
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:7777/user
