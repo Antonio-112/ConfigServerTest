@@ -1,0 +1,30 @@
+#HTTP Server
+server:
+  port: 3333
+
+#Spring config
+spring:
+  application:
+    name: carrito.service
+  jpa:
+    properties:
+      hibernate:
+        jdbc: time_zone = TimeZone
+    generate-ddl: true
+    
+#Discovery Server Access
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 60
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    appname: carrito.service
+
+#Security Config
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:7777/user
